@@ -3,6 +3,7 @@ import { AuthRoutes } from "../modules/auth/auth.route";
 import { UserRoutes } from "../modules/user/user.routes";
 import { adminRoutes } from "../modules/admin/admin.routes";
 import { wishListRoutes } from "../modules/wishList/wishlist.routes";
+import { orderRoutes } from "../modules/order/order.routes";
 
 const router = express.Router();
 
@@ -26,6 +27,10 @@ const CoreRoutes = [
   {
     path: "/shipping",
     element: wishListRoutes,
+  },
+  {
+    path: "/order",
+    element: orderRoutes,
   },
 ];
 
