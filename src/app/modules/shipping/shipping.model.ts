@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { boolean } from "zod";
+import { IShipping } from "./shiping.interfaces";
 
-const addressSchema = new Schema(
+const addressSchema = new Schema<IShipping>(
   {
     user: { type: Schema.Types.ObjectId, ref: "user" },
     street: {
@@ -25,11 +25,14 @@ const addressSchema = new Schema(
       required: true,
     },
     isFilled: {
-      type: boolean,
+      type: Boolean,
       default: false,
     },
   },
   { timestamps: true }
 );
 
-export const ShippingAddress = model("shippingAddress", addressSchema);
+export const ShippingAddress = model<IShipping>(
+  "shippingAddress",
+  addressSchema
+);

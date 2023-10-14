@@ -23,6 +23,10 @@ const CoreRoutes = [
     path: "/wishList",
     element: wishListRoutes,
   },
+  {
+    path: "/shipping",
+    element: wishListRoutes,
+  },
 ];
 
 CoreRoutes.forEach((route) => router.use(route.path, route.element));
