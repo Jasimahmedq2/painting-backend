@@ -16,6 +16,16 @@ router.get(
   ),
   UserControllers.retrieveProfile
 );
+router.get(
+  "/painter",
+  auth(
+    UserRoles.ADMIN,
+    UserRoles.SUPER_ADMIN,
+    UserRoles.CUSTOMER,
+    UserRoles.PAINTER
+  ),
+  UserControllers.retrievePainter
+);
 router.patch(
   "/profile/update",
   auth(

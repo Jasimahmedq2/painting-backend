@@ -25,7 +25,7 @@ router.get(
   PaintControllers.retrievePaintServices
 );
 router.get(
-  "/get-services/:id",
+  "/get-service/:id",
   auth(
     UserRoles.ADMIN,
     UserRoles.SUPER_ADMIN,

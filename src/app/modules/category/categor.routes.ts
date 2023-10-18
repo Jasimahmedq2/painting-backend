@@ -22,5 +22,15 @@ router.get(
   ),
   CategoryControllers.retrieveCategories
 );
+router.get(
+  "/get-category/:id",
+  auth(
+    UserRoles.ADMIN,
+    UserRoles.SUPER_ADMIN,
+    UserRoles.PAINTER,
+    UserRoles.CUSTOMER
+  ),
+  CategoryControllers.retrieveSingleCategory
+);
 
 export const categoryRoutes = router;

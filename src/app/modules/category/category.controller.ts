@@ -13,7 +13,7 @@ const addCategory = catchAsync(async (req: Request, res: Response) => {
   });
 });
 const retrieveCategories = catchAsync(async (req: Request, res: Response) => {
-  const result = await CategoryServices.retrieveCategories(req.body);
+  const result = await CategoryServices.retrieveCategories();
   sendResponse(res, {
     statusCode: 200,
     success: true,
@@ -21,8 +21,20 @@ const retrieveCategories = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const retrieveSingleCategory = catchAsync(
+  async (req: Request, res: Response) => {
+    const result = await CategoryServices.retrieveSingleCategory(req.params.id);
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "successfully retrieve a  categorie",
+      data: result,
+    });
+  }
+);
 
 export const CategoryControllers = {
   addCategory,
   retrieveCategories,
+  retrieveSingleCategory,
 };

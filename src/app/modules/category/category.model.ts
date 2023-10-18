@@ -2,15 +2,16 @@ import { Schema, model } from "mongoose";
 import { IPaintCategory } from "./category.interface";
 
 const PaintCategoryModel = new Schema<IPaintCategory>({
-  category_name: {
+  name: {
     type: String,
     required: true,
+    unique: true,
   },
   paints: {
     type: [
       {
-        paintService: Schema.Types.ObjectId,
-        ref: "paint",
+        type: Schema.Types.ObjectId,
+        ref: "paintService",
       },
     ],
   },

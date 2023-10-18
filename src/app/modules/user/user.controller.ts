@@ -14,6 +14,16 @@ const retrieveProfile = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const retrievePainter = catchAsync(async (req: Request, res: Response) => {
+  const result = await UserServices.retrievePainter();
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "successfully retrieve painter user",
+    data: result,
+  });
+});
 
 const updateProfile = catchAsync(async (req: Request, res: Response) => {
   const { userId } = (req as any).user;
@@ -31,4 +41,5 @@ const updateProfile = catchAsync(async (req: Request, res: Response) => {
 export const UserControllers = {
   retrieveProfile,
   updateProfile,
+  retrievePainter,
 };

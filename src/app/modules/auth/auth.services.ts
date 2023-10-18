@@ -33,14 +33,14 @@ const createUser = async (payload: IUser) => {
     phoneNo: payload.phoneNo,
   });
 
-  if (isExistUser) {
+  if (isExistUser && !isExistUser.isVerified) {
     const mailOptions = {
       from: config.my_email,
       to: payload.email,
       subject: "verify your email",
       html: `
     <P>Hello ${payload.name}, please verify your email</p>
-    <a href="https://stupendous-syrniki-758b36.netlify.app/verify/${createSecret}/" target="_blank">Click here to verify your email</a>`,
+    <a href="http://localhost:3000/verify/${createSecret}/" target="_blank">Click here to verify your email</a>`,
     };
     const result = await transporter.sendMail(mailOptions);
 
@@ -54,7 +54,7 @@ const createUser = async (payload: IUser) => {
       subject: "verify your email",
       html: `
     <P>Hello ${payload.name}, please verify your email</p>
-    <a href="https://stupendous-syrniki-758b36.netlify.app/verify/${createSecret}/" target="_blank">Click here to verify your email</a>`,
+    <a href="http://localhost:3000/verify/${createSecret}/" target="_blank">Click here to verify your email</a>`,
     };
     const result = await transporter.sendMail(mailOptions);
     console.log({ createSecret });
@@ -96,8 +96,6 @@ const LogIn = async (payload: ILogin): Promise<ILoginResponse> => {
 
   return {
     isVerified: isUserExist.isVerified,
-    userId: isUserExist._id.toString(),
-    email: isUserExist.email,
     role: isUserExist.role,
     token: accessToken,
   };
