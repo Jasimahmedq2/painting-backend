@@ -37,9 +37,35 @@ const updateProfile = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const getAllUser = catchAsync(async (req: Request, res: Response) => {
+  const { userId } = (req as any).user;
+  const { ...updateInfo } = req.body;
+  const result = await UserServices.getAllUser();
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "successfully retrieve users",
+    data: result,
+  });
+});
+const changeRole = catchAsync(async (req: Request, res: Response) => {
+  const { userId } = req.params;
+  const { role } = req.body;
+  const result = await UserServices.changeRole(userId, role);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "successfully update role",
+    data: result,
+  });
+});
 
 export const UserControllers = {
   retrieveProfile,
   updateProfile,
   retrievePainter,
+  getAllUser,
+  changeRole,
 };

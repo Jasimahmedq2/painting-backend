@@ -7,6 +7,7 @@ import { orderRoutes } from "../modules/order/order.routes";
 import { PaintRoutes } from "../modules/paintService/paint.routes";
 import { categoryRoutes } from "../modules/category/categor.routes";
 import { cartRoutes } from "../modules/cart/cart.routes";
+import { shippingRoutes } from "../modules/shipping/shipping.routes";
 
 const router = express.Router();
 
@@ -29,7 +30,7 @@ const CoreRoutes = [
   },
   {
     path: "/shipping",
-    element: wishListRoutes,
+    element: shippingRoutes,
   },
   {
     path: "/order",

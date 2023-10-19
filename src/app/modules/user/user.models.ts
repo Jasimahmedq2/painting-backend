@@ -31,7 +31,7 @@ const UserModel = new Schema<IUser>({
   },
   image: {
     type: String,
-    default: ""
+    default: "",
   },
 });
 

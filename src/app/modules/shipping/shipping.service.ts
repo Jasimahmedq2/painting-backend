@@ -9,12 +9,15 @@ const addShippingAddress = async (
   const existShipping = await ShippingAddress.findOne({ user: userId });
 
   if (existShipping && existShipping.isFilled) {
+    console.log("exist shipping address",payload);
     const result = await ShippingAddress.findOneAndUpdate(
       { user: userId },
-      { payload }
+      { ...payload }
     );
     return result;
   } else {
+    console.log(" shipping address not exist");
+
     const info = { ...payload, user: userId, isFilled: true };
     const result = await ShippingAddress.create(info);
     return result;

@@ -5,6 +5,7 @@ import sendResponse from "../../../shared/sendResponse";
 import { IShipping } from "./shiping.interfaces";
 
 const addShippingAddress = catchAsync(async (req: Request, res: Response) => {
+  console.log({body:req.body});
   const { userId } = (req as any).user;
   const { ...updateInfo } = req.body;
   const result = await ShippingAddressService.addShippingAddress(

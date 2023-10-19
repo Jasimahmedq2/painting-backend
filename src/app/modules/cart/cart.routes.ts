@@ -14,5 +14,15 @@ router.post(
   ),
   CartControllers.addToCart
 );
+router.get(
+  "/get-cart",
+  auth(
+    UserRoles.CUSTOMER,
+    UserRoles.ADMIN,
+    UserRoles.SUPER_ADMIN,
+    UserRoles.PAINTER
+  ),
+  CartControllers.getCartWithPrices
+);
 
 export const cartRoutes = router;

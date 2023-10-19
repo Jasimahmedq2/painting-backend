@@ -8,7 +8,6 @@ export type IPaintingService = {
 export type IOrderPayload = {
   items: IPaintingService[];
   total: number;
-  status: string;
 };
 
 export type IPaintingOrder = {

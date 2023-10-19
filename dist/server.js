@@ -14,12 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const app_1 = __importDefault(require("./app"));
-const index_1 = __importDefault(require("./config/index"));
 const colors_1 = __importDefault(require("colors"));
-const port = 5000 || index_1.default.port;
+const config_1 = __importDefault(require("./config"));
+const port = 5000 || config_1.default.port;
 const connectDb = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield mongoose_1.default.connect(index_1.default.db_string);
+        yield mongoose_1.default.connect(config_1.default.db_string);
         console.log(colors_1.default.yellow("connected DB"));
         app_1.default.listen(port, () => {
             console.log(colors_1.default.green("hey, I am listening the db perfectly"));

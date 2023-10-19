@@ -37,5 +37,15 @@ router.patch(
   ValidateRequest(UserValidationSchema.UpdateUser),
   UserControllers.updateProfile
 );
+router.get(
+  "/get-users",
+  auth(UserRoles.ADMIN, UserRoles.SUPER_ADMIN),
+  UserControllers.getAllUser
+);
+router.put(
+  "/role/:userId",
+  auth(UserRoles.ADMIN, UserRoles.SUPER_ADMIN),
+  UserControllers.changeRole
+);
 
 export const UserRoutes = router;

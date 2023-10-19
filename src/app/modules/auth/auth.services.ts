@@ -40,7 +40,7 @@ const createUser = async (payload: IUser) => {
       subject: "verify your email",
       html: `
     <P>Hello ${payload.name}, please verify your email</p>
-    <a href="http://localhost:3000/verify/${createSecret}/" target="_blank">Click here to verify your email</a>`,
+    <a href="https://painthut.vercel.app/verify/${createSecret}/" target="_blank">Click here to verify your email</a>`,
     };
     const result = await transporter.sendMail(mailOptions);
 
@@ -54,7 +54,7 @@ const createUser = async (payload: IUser) => {
       subject: "verify your email",
       html: `
     <P>Hello ${payload.name}, please verify your email</p>
-    <a href="http://localhost:3000/verify/${createSecret}/" target="_blank">Click here to verify your email</a>`,
+    <a href="https://painthut.vercel.app/verify/${createSecret}/" target="_blank">Click here to verify your email</a>`,
     };
     const result = await transporter.sendMail(mailOptions);
     console.log({ createSecret });
