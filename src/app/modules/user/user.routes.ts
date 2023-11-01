@@ -47,5 +47,10 @@ router.put(
   auth(UserRoles.ADMIN, UserRoles.SUPER_ADMIN),
   UserControllers.changeRole
 );
+router.delete(
+  "/delete/:userId",
+  auth(UserRoles.ADMIN, UserRoles.SUPER_ADMIN),
+  UserControllers.RemoveUserFromDB
+);
 
 export const UserRoutes = router;

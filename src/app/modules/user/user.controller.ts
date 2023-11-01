@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import catchAsync from "../../../shared/catchAsync";
 import { UserServices } from "./user.service";
 import sendResponse from "../../../shared/sendResponse";
+import { IUser } from "./user.interface";
 
 const retrieveProfile = catchAsync(async (req: Request, res: Response) => {
   const { userId } = (req as any).user;
@@ -61,6 +62,17 @@ const changeRole = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const RemoveUserFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { userId } = req.params;
+  const result = await UserServices.RemoveUserFromDB(userId);
+
+  sendResponse<IUser | null>(res, {
+    statusCode: 200,
+    success: true,
+    message: "successfully delete the user",
+    data: result,
+  });
+});
 
 export const UserControllers = {
   retrieveProfile,
@@ -68,4 +80,5 @@ export const UserControllers = {
   retrievePainter,
   getAllUser,
   changeRole,
+  RemoveUserFromDB,
 };

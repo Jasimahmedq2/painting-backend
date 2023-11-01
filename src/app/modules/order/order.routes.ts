@@ -29,18 +29,22 @@ router.get(
 );
 router.get(
   "/get-user-order",
-  auth( UserRoles.CUSTOMER,
+  auth(
+    UserRoles.CUSTOMER,
     UserRoles.ADMIN,
     UserRoles.SUPER_ADMIN,
-    UserRoles.PAINTER),
+    UserRoles.PAINTER
+  ),
   OrderController.retrieveUserOrder
 );
 router.put(
   "/update-status/:orderId",
-  auth( UserRoles.CUSTOMER,
+  auth(
+    UserRoles.CUSTOMER,
     UserRoles.ADMIN,
     UserRoles.SUPER_ADMIN,
-    UserRoles.PAINTER),
+    UserRoles.PAINTER
+  ),
   OrderController.changStatus
 );
 

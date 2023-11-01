@@ -39,10 +39,16 @@ const changeRole = async (userId: string, role: string) => {
   }
 };
 
+const RemoveUserFromDB = async (userId: string): Promise<IUser | null> => {
+  const result = await User.findByIdAndDelete(userId);
+  return result;
+};
+
 export const UserServices = {
   retrieveProfile,
   updateProfile,
   retrievePainter,
   getAllUser,
   changeRole,
+  RemoveUserFromDB,
 };

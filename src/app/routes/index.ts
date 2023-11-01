@@ -8,6 +8,7 @@ import { PaintRoutes } from "../modules/paintService/paint.routes";
 import { categoryRoutes } from "../modules/category/categor.routes";
 import { cartRoutes } from "../modules/cart/cart.routes";
 import { shippingRoutes } from "../modules/shipping/shipping.routes";
+import { newsLetterRoutes } from "../modules/newLetter/newsLetter.routes";
 
 const router = express.Router();
 
@@ -47,6 +48,10 @@ const CoreRoutes = [
   {
     path: "/cart",
     element: cartRoutes,
+  },
+  {
+    path: "/newsLetter",
+    element: newsLetterRoutes,
   },
 ];
 
