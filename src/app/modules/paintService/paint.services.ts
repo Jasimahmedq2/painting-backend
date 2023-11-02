@@ -39,7 +39,7 @@ export const findProducts = async (
 const retrieveSinglePaint = async (
   id: string
 ): Promise<IPaitService | null> => {
-  const result = await PaintService.findById(id);
+  const result = await PaintService.findById(id).populate('painter');
   return result;
 };
 const removePaintService = async (id: string): Promise<IPaitService | null> => {
