@@ -1,9 +1,17 @@
-## Admin panel backend
+## Live Link: https://painthut.vercel.app/
 
-### The process to run this project on the local machine
+## backend Live: https://paining-hut.vercel.app/
 
-- clone the project first
-- navigate to the project by `cd project name`
-- install all packages `npm install or yarn install`
-- you have to add all envernment varialbe in the `.env` file
-- npm run dev
+## super admin credential: 
+
+- email: jasimahmed90852417@gmail.com
+- password: 123456
+
+## admin credential:
+- email: admin@admin.com
+- password: 123456
+
+ ## customer credential: 
+
+ - email: jasim.dev48@gmail.com
+ - password: 123456
