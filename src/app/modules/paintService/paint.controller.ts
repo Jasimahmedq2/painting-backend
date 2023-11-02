@@ -56,6 +56,25 @@ const updatePaintService = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const findProducts = catchAsync(async (req: Request, res: Response) => {
+  const { page, perPage, sortField, sortOrder, ...query } = (req as any).query;
+
+  console.log("req.query", req.query);
+
+  const result = await PaintServices.findProducts(
+    query,
+    page,
+    perPage,
+    sortField,
+    sortOrder
+  );
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "successfully update a  service",
+    data: result,
+  });
+});
 
 export const PaintControllers = {
   addPaintService,
@@ -63,4 +82,5 @@ export const PaintControllers = {
   retrieveSinglePaint,
   removePaintService,
   updatePaintService,
+  findProducts,
 };

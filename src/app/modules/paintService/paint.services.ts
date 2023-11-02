@@ -1,5 +1,6 @@
-import { IPaitService } from "./paint.interface";
+import { IPaitService, IServiceFilter } from "./paint.interface";
 import { PaintService } from "./paint.model";
+import { PaintServiceUtility } from "./paint.utility";
 
 const addPaintService = async (payload: IPaitService) => {
   const result = await PaintService.create(payload);
@@ -9,6 +10,32 @@ const retrievePaintServices = async (): Promise<IPaitService[] | null> => {
   const result = await PaintService.find({});
   return result;
 };
+
+export const findProducts = async (
+  query: Partial<IServiceFilter>,
+  page: number,
+  perPage: number,
+  sortField: string,
+  sortOrder: "asc" | "desc"
+) => {
+  console.log("query", query);
+  const filter = PaintServiceUtility.buildFilter(query);
+  const sort = { [sortField]: sortOrder };
+
+  const totalResults = await PaintService.countDocuments(filter);
+  const results = await PaintService.find(filter)
+    .sort(sort)
+    .skip((page - 1) * perPage)
+    .limit(perPage)
+    .lean()
+    .exec();
+
+  return {
+    totalResults,
+    results,
+  };
+};
+
 const retrieveSinglePaint = async (
   id: string
 ): Promise<IPaitService | null> => {
@@ -33,4 +60,5 @@ export const PaintServices = {
   retrieveSinglePaint,
   removePaintService,
   updatePaintService,
+  findProducts,
 };

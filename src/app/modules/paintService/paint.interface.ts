@@ -17,3 +17,15 @@ export type IPaitService = {
   image: string;
   reviews?: IReviews[];
 };
+
+export type IServiceFilter = {
+  description?: string;
+  name?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  page?: number;
+  perPage?: number;
+  sortField?: string;
+  sortOrder?: "asc" | "desc";
+  search?: string;
+};

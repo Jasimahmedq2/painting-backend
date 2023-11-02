@@ -13,7 +13,6 @@ router.post(
   ValidateRequest(paintValidationSchema.addPaintSchema),
   PaintControllers.addPaintService
 );
-
 router.get(
   "/get-services",
   auth(
@@ -24,6 +23,7 @@ router.get(
   ),
   PaintControllers.retrievePaintServices
 );
+router.get("/get-services/test", PaintControllers.findProducts);
 router.get(
   "/get-service/:id",
   auth(
