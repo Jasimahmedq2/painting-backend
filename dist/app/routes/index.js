@@ -13,6 +13,7 @@ const paint_routes_1 = require("../modules/paintService/paint.routes");
 const categor_routes_1 = require("../modules/category/categor.routes");
 const cart_routes_1 = require("../modules/cart/cart.routes");
 const shipping_routes_1 = require("../modules/shipping/shipping.routes");
+const newsLetter_routes_1 = require("../modules/newLetter/newsLetter.routes");
 const router = express_1.default.Router();
 const CoreRoutes = [
     {
@@ -50,6 +51,10 @@ const CoreRoutes = [
     {
         path: "/cart",
         element: cart_routes_1.cartRoutes,
+    },
+    {
+        path: "/newsLetter",
+        element: newsLetter_routes_1.newsLetterRoutes,
     },
 ];
 CoreRoutes.forEach((route) => router.use(route.path, route.element));

@@ -46,10 +46,15 @@ const changeRole = (userId, role) => __awaiter(void 0, void 0, void 0, function*
         throw new apiError_1.default(400, "invalid role");
     }
 });
+const RemoveUserFromDB = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield user_models_1.User.findByIdAndDelete(userId);
+    return result;
+});
 exports.UserServices = {
     retrieveProfile,
     updateProfile,
     retrievePainter,
     getAllUser,
     changeRole,
+    RemoveUserFromDB,
 };

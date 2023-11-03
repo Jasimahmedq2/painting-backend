@@ -13,27 +13,9 @@ router.post(
   ValidateRequest(paintValidationSchema.addPaintSchema),
   PaintControllers.addPaintService
 );
-router.get(
-  "/get-services",
-  auth(
-    UserRoles.ADMIN,
-    UserRoles.SUPER_ADMIN,
-    UserRoles.CUSTOMER,
-    UserRoles.PAINTER
-  ),
-  PaintControllers.retrievePaintServices
-);
+router.get("/get-services", PaintControllers.retrievePaintServices);
 router.get("/get-services/test", PaintControllers.findProducts);
-router.get(
-  "/get-service/:id",
-  auth(
-    UserRoles.ADMIN,
-    UserRoles.SUPER_ADMIN,
-    UserRoles.CUSTOMER,
-    UserRoles.PAINTER
-  ),
-  PaintControllers.retrieveSinglePaint
-);
+router.get("/get-service/:id", PaintControllers.retrieveSinglePaint);
 router.delete(
   "/remove/:id",
   auth(UserRoles.ADMIN, UserRoles.SUPER_ADMIN),

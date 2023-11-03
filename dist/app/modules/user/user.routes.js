@@ -16,4 +16,5 @@ router.get("/painter", (0, auth_1.default)(user_role_1.UserRoles.ADMIN, user_rol
 router.patch("/profile/update", (0, auth_1.default)(user_role_1.UserRoles.ADMIN, user_role_1.UserRoles.SUPER_ADMIN, user_role_1.UserRoles.CUSTOMER, user_role_1.UserRoles.PAINTER), (0, validateRequest_1.default)(user_validation_1.UserValidationSchema.UpdateUser), user_controller_1.UserControllers.updateProfile);
 router.get("/get-users", (0, auth_1.default)(user_role_1.UserRoles.ADMIN, user_role_1.UserRoles.SUPER_ADMIN), user_controller_1.UserControllers.getAllUser);
 router.put("/role/:userId", (0, auth_1.default)(user_role_1.UserRoles.ADMIN, user_role_1.UserRoles.SUPER_ADMIN), user_controller_1.UserControllers.changeRole);
+router.delete("/delete/:userId", (0, auth_1.default)(user_role_1.UserRoles.ADMIN, user_role_1.UserRoles.SUPER_ADMIN), user_controller_1.UserControllers.RemoveUserFromDB);
 exports.UserRoutes = router;

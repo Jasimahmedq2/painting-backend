@@ -9,8 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaintServices = void 0;
+exports.PaintServices = exports.findProducts = void 0;
 const paint_model_1 = require("./paint.model");
+const paint_utility_1 = require("./paint.utility");
 const addPaintService = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield paint_model_1.PaintService.create(payload);
     return result;
@@ -19,8 +20,25 @@ const retrievePaintServices = () => __awaiter(void 0, void 0, void 0, function* 
     const result = yield paint_model_1.PaintService.find({});
     return result;
 });
+const findProducts = (query, page, perPage, sortField, sortOrder) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("query", query);
+    const filter = paint_utility_1.PaintServiceUtility.buildFilter(query);
+    const sort = { [sortField]: sortOrder };
+    const totalResults = yield paint_model_1.PaintService.countDocuments(filter);
+    const results = yield paint_model_1.PaintService.find(filter)
+        .sort(sort)
+        .skip((page - 1) * perPage)
+        .limit(perPage)
+        .lean()
+        .exec();
+    return {
+        totalResults,
+        results,
+    };
+});
+exports.findProducts = findProducts;
 const retrieveSinglePaint = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield paint_model_1.PaintService.findById(id);
+    const result = yield paint_model_1.PaintService.findById(id).populate('painter');
     return result;
 });
 const removePaintService = (id) => __awaiter(void 0, void 0, void 0, function* () {
@@ -37,4 +55,5 @@ exports.PaintServices = {
     retrieveSinglePaint,
     removePaintService,
     updatePaintService,
+    findProducts: exports.findProducts,
 };

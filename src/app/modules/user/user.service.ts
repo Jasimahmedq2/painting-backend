@@ -3,7 +3,7 @@ import { IUpdateUser, IUser } from "./user.interface";
 import { User } from "./user.models";
 
 const retrieveProfile = async (userId: string) => {
-  const Profile = await User.findById(userId);
+  const Profile = await User.findById(userId).select("-password");
   return Profile;
 };
 const retrievePainter = async (): Promise<IUser[] | null> => {
