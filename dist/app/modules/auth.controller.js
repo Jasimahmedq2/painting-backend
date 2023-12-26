@@ -47,7 +47,6 @@ const verifyEmailAndUpdateStatus = (req, res, next) => __awaiter(void 0, void 0,
     try {
         const { token } = req.params;
         // const token = (req as any).headers.authorization.split(" ")[1];
-        console.log({ token });
         const result = yield auth_services_1.AuthUserServices.verifyEmailAndUpdateStatus(token);
         (0, sendResponse_1.default)(res, {
             statusCode: 200,

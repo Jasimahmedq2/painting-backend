@@ -4,7 +4,6 @@ import ApiError from "../../../errors/apiError";
 import { NewsLetter } from "./newsLetter.model";
 
 const subscribe = async (email: string, userId: Types.ObjectId) => {
-  console.log("email", email);
 
   const user = await User.findById(userId);
   if (user?.email.toString() !== email.toString()) {

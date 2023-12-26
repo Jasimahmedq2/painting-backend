@@ -22,7 +22,6 @@ const getAllUser = async () => {
 };
 
 const changeRole = async (userId: string, role: string) => {
-  console.log(userId);
   if (["admin", "customer", "painter"].includes(role)) {
     const updateUser = await User.findByIdAndUpdate(
       userId,

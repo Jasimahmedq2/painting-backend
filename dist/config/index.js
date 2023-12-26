@@ -17,6 +17,12 @@ exports.default = {
         verify_secret: process.env.VERIFY_SECRET,
         verify_email_expire: process.env.VERIFY_EMAIL_EXPIRE,
     },
+    ssl: {
+        storeId: process.env.STOREID,
+        storePass: process.env.STOREPASS,
+        sslPaymentUrl: process.env.SSLPAYMENTURL,
+        sslValidationUrl: process.env.SSLVALIDATIONURL
+    },
     my_email: process.env.MY_EMAIL,
     my_password: process.env.MY_PASSWORD,
 };

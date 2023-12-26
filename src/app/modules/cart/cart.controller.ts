@@ -4,7 +4,6 @@ import { CartServices } from "./cart.service";
 import sendResponse from "../../../shared/sendResponse";
 
 const addToCart = catchAsync(async (req: Request, res: Response) => {
-  console.log(req.body);
   const { userId } = (req as any).user;
   const { ...cartInfo } = req.body;
   const result = await CartServices.addToCart(userId, cartInfo);
@@ -16,7 +15,6 @@ const addToCart = catchAsync(async (req: Request, res: Response) => {
   });
 });
 const getCartWithPrices = catchAsync(async (req: Request, res: Response) => {
-  console.log(req.body);
   const { userId } = (req as any).user;
   const { ...cartInfo } = req.body;
   const result = await CartServices.getCartWithPrices(userId);

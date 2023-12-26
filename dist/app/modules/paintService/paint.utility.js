@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaintServiceUtility = void 0;
 const buildFilter = (query) => {
-    console.log({ queries: query });
     const filter = {};
     if (query === null || query === void 0 ? void 0 : query.search) {
         const searchRegex = new RegExp(query.search, "i");

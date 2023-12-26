@@ -21,7 +21,6 @@ const retrievePaintServices = () => __awaiter(void 0, void 0, void 0, function* 
     return result;
 });
 const findProducts = (query, page, perPage, sortField, sortOrder) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("query", query);
     const filter = paint_utility_1.PaintServiceUtility.buildFilter(query);
     const sort = { [sortField]: sortOrder };
     const totalResults = yield paint_model_1.PaintService.countDocuments(filter);

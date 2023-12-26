@@ -6,8 +6,7 @@ const orderSchema = new mongoose_1.Schema({
     user: { type: mongoose_1.Schema.Types.ObjectId, ref: "user" },
     items: [
         {
-            painting: { type: mongoose_1.Schema.Types.ObjectId, ref: "paintService" },
-            quantity: Number,
+            type: { type: mongoose_1.Schema.Types.ObjectId, ref: "paintService" },
         },
     ],
     total: Number,

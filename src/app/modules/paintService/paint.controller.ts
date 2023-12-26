@@ -59,7 +59,6 @@ const updatePaintService = catchAsync(async (req: Request, res: Response) => {
 const findProducts = catchAsync(async (req: Request, res: Response) => {
   const { page, perPage, sortField, sortOrder, ...query } = (req as any).query;
 
-  console.log("req.query", req.query);
 
   const result = await PaintServices.findProducts(
     query,

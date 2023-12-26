@@ -14,12 +14,10 @@ const shipping_model_1 = require("./shipping.model");
 const addShippingAddress = (userId, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const existShipping = yield shipping_model_1.ShippingAddress.findOne({ user: userId });
     if (existShipping && existShipping.isFilled) {
-        console.log("exist shipping address", payload);
         const result = yield shipping_model_1.ShippingAddress.findOneAndUpdate({ user: userId }, Object.assign({}, payload));
         return result;
     }
     else {
-        console.log(" shipping address not exist");
         const info = Object.assign(Object.assign({}, payload), { user: userId, isFilled: true });
         const result = yield shipping_model_1.ShippingAddress.create(info);
         return result;

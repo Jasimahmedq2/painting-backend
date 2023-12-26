@@ -14,6 +14,7 @@ const categor_routes_1 = require("../modules/category/categor.routes");
 const cart_routes_1 = require("../modules/cart/cart.routes");
 const shipping_routes_1 = require("../modules/shipping/shipping.routes");
 const newsLetter_routes_1 = require("../modules/newLetter/newsLetter.routes");
+const payment_routes_1 = require("../modules/payment/payment.routes");
 const router = express_1.default.Router();
 const CoreRoutes = [
     {
@@ -55,6 +56,10 @@ const CoreRoutes = [
     {
         path: "/newsLetter",
         element: newsLetter_routes_1.newsLetterRoutes,
+    },
+    {
+        path: "/payment",
+        element: payment_routes_1.paymentRoutes,
     },
 ];
 CoreRoutes.forEach((route) => router.use(route.path, route.element));

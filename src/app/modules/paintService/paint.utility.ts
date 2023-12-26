@@ -1,7 +1,6 @@
 import { IServiceFilter } from "./paint.interface";
 
 const buildFilter = (query: Partial<IServiceFilter>): any => {
-  console.log({ queries: query });
   const filter: any = {};
 
   if (query?.search) {

@@ -12,6 +12,6 @@ const validateRequest_1 = __importDefault(require("../../middleware/validateRequ
 const category_validation_1 = require("./category.validation");
 const router = express_1.default.Router();
 router.post("/add-category", (0, auth_1.default)(user_role_1.UserRoles.ADMIN, user_role_1.UserRoles.SUPER_ADMIN), (0, validateRequest_1.default)(category_validation_1.CategoryValidationSchema.addCategory), category_controller_1.CategoryControllers.addCategory);
-router.get("/get-categories", (0, auth_1.default)(user_role_1.UserRoles.ADMIN, user_role_1.UserRoles.SUPER_ADMIN, user_role_1.UserRoles.PAINTER, user_role_1.UserRoles.CUSTOMER), category_controller_1.CategoryControllers.retrieveCategories);
-router.get("/get-category/:id", (0, auth_1.default)(user_role_1.UserRoles.ADMIN, user_role_1.UserRoles.SUPER_ADMIN, user_role_1.UserRoles.PAINTER, user_role_1.UserRoles.CUSTOMER), category_controller_1.CategoryControllers.retrieveSingleCategory);
+router.get("/get-categories", category_controller_1.CategoryControllers.retrieveCategories);
+router.get("/get-category/:id", category_controller_1.CategoryControllers.retrieveSingleCategory);
 exports.categoryRoutes = router;

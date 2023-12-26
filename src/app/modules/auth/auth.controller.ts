@@ -37,7 +37,6 @@ const verifyEmailAndUpdateStatus = async (
   try {
     const { token } = req.params;
     // const token = (req as any).headers.authorization.split(" ")[1];
-    console.log({ token });
     const result = await AuthUserServices.verifyEmailAndUpdateStatus(token);
     sendResponse<IUser | null>(res, {
       statusCode: 200,

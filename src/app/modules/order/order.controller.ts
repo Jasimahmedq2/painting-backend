@@ -5,17 +5,15 @@ import sendResponse from "../../../shared/sendResponse";
 import { IPaintingOrder } from "./order.interface";
 
 const createOrder = catchAsync(async (req: Request, res: Response) => {
-  const { userId } = (req as any).user;
-  const { ...info } = req.body;
-  const result = await OrderServices.createOrder(userId, info);
-
-  sendResponse(res, {
-    statusCode: 200,
-    success: true,
-    message: "successfully created a order",
-    data: result,
-  });
+  const { userId, tran_id } = (req as any).query;
+  console.log({ userId, tran_id });
+  // const { ...info } = req.body;
+  const result = await OrderServices.createOrder(userId, tran_id);
+  if (result.massage === "success") {
+    res.redirect("https://painthut.vercel.app/success");
+  }
 });
+
 const retrieveOrder = catchAsync(async (req: Request, res: Response) => {
   const result = await OrderServices.retrieveOrder();
 
@@ -38,7 +36,6 @@ const retrieveUserOrder = catchAsync(async (req: Request, res: Response) => {
   });
 });
 const changStatus = catchAsync(async (req: Request, res: Response) => {
-  console.log(req.body);
   const { orderId } = req.params;
   const statusInfo = req.body;
   const result = await OrderServices.changStatus(orderId, statusInfo.status);

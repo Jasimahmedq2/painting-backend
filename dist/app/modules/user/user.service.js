@@ -16,7 +16,7 @@ exports.UserServices = void 0;
 const apiError_1 = __importDefault(require("../../../errors/apiError"));
 const user_models_1 = require("./user.models");
 const retrieveProfile = (userId) => __awaiter(void 0, void 0, void 0, function* () {
-    const Profile = yield user_models_1.User.findById(userId);
+    const Profile = yield user_models_1.User.findById(userId).select("-password");
     return Profile;
 });
 const retrievePainter = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -34,7 +34,6 @@ const getAllUser = () => __awaiter(void 0, void 0, void 0, function* () {
     return result;
 });
 const changeRole = (userId, role) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(userId);
     if (["admin", "customer", "painter"].includes(role)) {
         const updateUser = yield user_models_1.User.findByIdAndUpdate(userId, { role }, { new: true });
         if (!updateUser) {

@@ -78,7 +78,6 @@ const updatePaintService = (0, catchAsync_1.default)((req, res) => __awaiter(voi
 }));
 const findProducts = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const _a = req.query, { page, perPage, sortField, sortOrder } = _a, query = __rest(_a, ["page", "perPage", "sortField", "sortOrder"]);
-    console.log("req.query", req.query);
     const result = yield paint_services_1.PaintServices.findProducts(query, page, perPage, sortField, sortOrder);
     (0, sendResponse_1.default)(res, {
         statusCode: 200,

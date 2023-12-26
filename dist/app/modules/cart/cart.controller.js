@@ -28,7 +28,6 @@ const catchAsync_1 = __importDefault(require("../../../shared/catchAsync"));
 const cart_service_1 = require("./cart.service");
 const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
 const addToCart = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
     const { userId } = req.user;
     const cartInfo = __rest(req.body, []);
     const result = yield cart_service_1.CartServices.addToCart(userId, cartInfo);
@@ -40,7 +39,6 @@ const addToCart = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void
     });
 }));
 const getCartWithPrices = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
     const { userId } = req.user;
     const cartInfo = __rest(req.body, []);
     const result = yield cart_service_1.CartServices.getCartWithPrices(userId);

@@ -17,7 +17,6 @@ const user_models_1 = require("../user/user.models");
 const apiError_1 = __importDefault(require("../../../errors/apiError"));
 const newsLetter_model_1 = require("./newsLetter.model");
 const subscribe = (email, userId) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("email", email);
     const user = yield user_models_1.User.findById(userId);
     if ((user === null || user === void 0 ? void 0 : user.email.toString()) !== email.toString()) {
         throw new apiError_1.default(400, "there required your logged-in email");

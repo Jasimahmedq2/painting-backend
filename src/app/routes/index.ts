@@ -9,6 +9,7 @@ import { categoryRoutes } from "../modules/category/categor.routes";
 import { cartRoutes } from "../modules/cart/cart.routes";
 import { shippingRoutes } from "../modules/shipping/shipping.routes";
 import { newsLetterRoutes } from "../modules/newLetter/newsLetter.routes";
+import { paymentRoutes } from "../modules/payment/payment.routes";
 
 const router = express.Router();
 
@@ -52,6 +53,10 @@ const CoreRoutes = [
   {
     path: "/newsLetter",
     element: newsLetterRoutes,
+  },
+  {
+    path: "/payment",
+    element: paymentRoutes,
   },
 ];
 

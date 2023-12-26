@@ -28,7 +28,6 @@ const catchAsync_1 = __importDefault(require("../../../shared/catchAsync"));
 const shipping_service_1 = require("./shipping.service");
 const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
 const addShippingAddress = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log({ body: req.body });
     const { userId } = req.user;
     const updateInfo = __rest(req.body, []);
     const result = yield shipping_service_1.ShippingAddressService.addShippingAddress(userId, updateInfo);

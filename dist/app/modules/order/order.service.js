@@ -16,15 +16,29 @@ exports.OrderServices = void 0;
 const order_model_1 = require("./order.model");
 const apiError_1 = __importDefault(require("../../../errors/apiError"));
 const cart_model_1 = require("../cart/cart.model");
-const createOrder = (userId, payload) => __awaiter(void 0, void 0, void 0, function* () {
+const payment_model_1 = require("../payment/payment.model");
+const payment_service_1 = require("../payment/payment.service");
+const createOrder = (userId, tran_id) => __awaiter(void 0, void 0, void 0, function* () {
     const userCart = yield cart_model_1.Cart.findOne({ user: userId });
     if (!userCart) {
         throw new apiError_1.default(404, "User cart not found");
     }
-    const newOrder = new order_model_1.Order(Object.assign(Object.assign({}, payload), { user: userId }));
+    const paymentInfo = yield payment_model_1.Payment.findOne({ transactionId: tran_id });
+    if (!paymentInfo) {
+        throw new apiError_1.default(400, "payment info doesn't exist");
+    }
+    const orderInfo = {
+        user: paymentInfo === null || paymentInfo === void 0 ? void 0 : paymentInfo.userId,
+        items: paymentInfo === null || paymentInfo === void 0 ? void 0 : paymentInfo.serviceIds,
+        total: paymentInfo === null || paymentInfo === void 0 ? void 0 : paymentInfo.amount,
+    };
+    const newOrder = new order_model_1.Order(orderInfo);
     const result = yield newOrder.save();
     yield cart_model_1.Cart.deleteOne({ user: userId });
-    return result;
+    // change payment status by webhook function
+    const changePaymentStatus = yield payment_service_1.PaymentService.webhook(tran_id);
+    console.log({ changePaymentStatus });
+    return changePaymentStatus;
 });
 const retrieveOrder = () => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield order_model_1.Order.find({})

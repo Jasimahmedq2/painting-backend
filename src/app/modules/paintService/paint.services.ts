@@ -18,7 +18,6 @@ export const findProducts = async (
   sortField: string,
   sortOrder: "asc" | "desc"
 ) => {
-  console.log("query", query);
   const filter = PaintServiceUtility.buildFilter(query);
   const sort = { [sortField]: sortOrder };
 

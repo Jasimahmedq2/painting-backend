@@ -8,13 +8,7 @@ const router = express.Router();
 
 router.post(
   "/create-order",
-  auth(
-    UserRoles.CUSTOMER,
-    UserRoles.ADMIN,
-    UserRoles.SUPER_ADMIN,
-    UserRoles.PAINTER
-  ),
-  ValidateRequest(OrderValidationSchema.createOrder),
+  // ValidateRequest(OrderValidationSchema.createOrder),
   OrderController.createOrder
 );
 router.get(
