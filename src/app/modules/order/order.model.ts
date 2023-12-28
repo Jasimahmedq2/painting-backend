@@ -3,11 +3,10 @@ import { Schema, model } from "mongoose";
 const orderSchema = new Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: "user" },
-    items: [
-      {
-        type: { type: Schema.Types.ObjectId, ref: "paintService" },
-      },
-    ],
+    items: {
+      type: [],
+      default: [],
+    },
     total: Number,
     status: {
       type: String,

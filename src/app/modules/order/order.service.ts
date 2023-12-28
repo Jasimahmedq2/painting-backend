@@ -22,6 +22,7 @@ const createOrder = async (userId: Types.ObjectId, tran_id: string) => {
     items: paymentInfo?.serviceIds,
     total: paymentInfo?.amount,
   };
+
   const newOrder = new Order(orderInfo);
   const result = await newOrder.save();
   await Cart.deleteOne({ user: userId });
@@ -32,7 +33,7 @@ const createOrder = async (userId: Types.ObjectId, tran_id: string) => {
 };
 
 const retrieveOrder = async () => {
-  const result = await Order.find({}).populate("user").populate("items");
+  const result = await Order.find({}).populate("user");
   return result;
 };
 const retrieveUserOrder = async (userId: string) => {

@@ -4,11 +4,10 @@ exports.Order = void 0;
 const mongoose_1 = require("mongoose");
 const orderSchema = new mongoose_1.Schema({
     user: { type: mongoose_1.Schema.Types.ObjectId, ref: "user" },
-    items: [
-        {
-            type: { type: mongoose_1.Schema.Types.ObjectId, ref: "paintService" },
-        },
-    ],
+    items: {
+        type: [],
+        default: [],
+    },
     total: Number,
     status: {
         type: String,

@@ -41,15 +41,11 @@ const createOrder = (userId, tran_id) => __awaiter(void 0, void 0, void 0, funct
     return changePaymentStatus;
 });
 const retrieveOrder = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield order_model_1.Order.find({})
-        .populate("user")
-        .populate("items.painting");
+    const result = yield order_model_1.Order.find({}).populate("user");
     return result;
 });
 const retrieveUserOrder = (userId) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield order_model_1.Order.find({ user: userId })
-        .populate("user")
-        .populate("items.painting");
+    const result = yield order_model_1.Order.find({ user: userId }).populate("user");
     return result;
 });
 const changStatus = (orderId, status) => __awaiter(void 0, void 0, void 0, function* () {
