@@ -1,4 +1,5 @@
 import { Types } from "mongoose";
+import { IPaitService } from "../paintService/paint.interface";
 
 export type IPaintingService = {
   painting: string;
@@ -15,4 +16,10 @@ export type IPaintingOrder = {
   items: IPaintingService[];
   total: number;
   status: string;
+};
+
+export type IFinalPending = {
+  total: number;
+  items: IPaitService[];
+  orders: IPaintingOrder[];
 };

@@ -1,10 +1,15 @@
-import { Types } from "mongoose";
-import { IOrderPayload } from "./order.interface";
+import { ObjectId, Types } from "mongoose";
+import {
+  IFinalPending,
+  IOrderPayload,
+  IPaintingOrder,
+} from "./order.interface";
 import { Order } from "./order.model";
 import ApiError from "../../../errors/apiError";
 import { Cart } from "../cart/cart.model";
 import { Payment } from "../payment/payment.model";
 import { PaymentService } from "../payment/payment.service";
+import { PaintService } from "../paintService/paint.model";
 
 const createOrder = async (userId: Types.ObjectId, tran_id: string) => {
   const userCart = await Cart.findOne({ user: userId });
@@ -58,9 +63,71 @@ const changStatus = async (orderId: string, status: string) => {
   }
 };
 
+const retrievePendingOrders = async (userId: ObjectId) => {
+  const results = await Order.find({
+    user: userId,
+    status: "pending",
+  });
+
+  const itemIds = results.flatMap((order) => order.items);
+
+  const items = await PaintService.find({ _id: { $in: itemIds } });
+  console.log({ items });
+
+  const finalResult = {
+    total: results?.length,
+    items,
+    orders: results,
+  };
+
+  return finalResult;
+};
+
+const completedOrders = async (userId: ObjectId) => {
+  const results = await Order.find({
+    user: userId,
+    status: "completed",
+  });
+
+  const itemIds = results.flatMap((order) => order.items);
+
+  const items = await PaintService.find({ _id: { $in: itemIds } });
+  console.log({ items });
+
+  const finalResult = {
+    total: results?.length,
+    items,
+    orders: results,
+  };
+
+  return finalResult;
+};
+const CanceledOrders = async (userId: ObjectId) => {
+  const results = await Order.find({
+    user: userId,
+    status: "canceled",
+  });
+
+  const itemIds = results.flatMap((order) => order.items);
+
+  const items = await PaintService.find({ _id: { $in: itemIds } });
+  console.log({ items });
+
+  const finalResult = {
+    total: results?.length,
+    items,
+    orders: results,
+  };
+
+  return finalResult;
+};
+
 export const OrderServices = {
   createOrder,
   retrieveOrder,
   changStatus,
   retrieveUserOrder,
+  retrievePendingOrders,
+  completedOrders,
+  CanceledOrders,
 };

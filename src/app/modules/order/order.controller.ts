@@ -47,10 +47,49 @@ const changStatus = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const retrievePendingOrders = catchAsync(
+  async (req: Request, res: Response) => {
+    const { userId } = (req as any).user;
+    const result = await OrderServices.retrievePendingOrders(userId);
+
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "successfully retrive all pending order",
+      data: result,
+    });
+  }
+);
+const completedOrders = catchAsync(async (req: Request, res: Response) => {
+  const { userId } = (req as any).user;
+  const result = await OrderServices.completedOrders(userId);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "successfully retrive all completed order",
+    data: result,
+  });
+});
+
+const CanceledOrders = catchAsync(async (req: Request, res: Response) => {
+  const { userId } = (req as any).user;
+  const result = await OrderServices.CanceledOrders(userId);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "successfully retrive all completed order",
+    data: result,
+  });
+});
 
 export const OrderController = {
   createOrder,
   retrieveOrder,
   changStatus,
   retrieveUserOrder,
+  retrievePendingOrders,
+  completedOrders,
+  CanceledOrders,
 };

@@ -31,6 +31,23 @@ router.get(
   ),
   OrderController.retrieveUserOrder
 );
+
+// get all peding order for specific user
+router.get(
+  "/pending",
+  auth(UserRoles.CUSTOMER, UserRoles.PAINTER),
+  OrderController.retrievePendingOrders
+);
+router.get(
+  "/completed",
+  auth(UserRoles.CUSTOMER, UserRoles.PAINTER),
+  OrderController.completedOrders
+);
+router.get(
+  "/canceled",
+  auth(UserRoles.CUSTOMER, UserRoles.PAINTER),
+  OrderController.CanceledOrders
+);
 router.put(
   "/update-status/:orderId",
   auth(
