@@ -56,6 +56,8 @@ PaintModel.post("save", async function () {
 
   const category = await Category.findById(product.category);
 
+  console.log({ category });
+
   if (category) {
     category.paints.push(product._id);
     await category.save();

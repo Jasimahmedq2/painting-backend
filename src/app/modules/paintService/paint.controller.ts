@@ -6,6 +6,7 @@ import { IPaitService } from "./paint.interface";
 import pick from "../../../shared/pick";
 
 const addPaintService = catchAsync(async (req: Request, res: Response) => {
+  console.log({ data: req.body });
   const result = await PaintServices.addPaintService(req.body);
   sendResponse<IPaitService>(res, {
     statusCode: 200,
@@ -58,7 +59,6 @@ const updatePaintService = catchAsync(async (req: Request, res: Response) => {
 });
 const findProducts = catchAsync(async (req: Request, res: Response) => {
   const { page, perPage, sortField, sortOrder, ...query } = (req as any).query;
-
 
   const result = await PaintServices.findProducts(
     query,

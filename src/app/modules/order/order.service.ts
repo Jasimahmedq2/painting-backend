@@ -41,9 +41,25 @@ const retrieveOrder = async () => {
   const result = await Order.find({}).populate("user");
   return result;
 };
+
 const retrieveUserOrder = async (userId: string) => {
-  const result = await Order.find({ user: userId }).populate("user");
-  return result;
+  const results = await Order.find({ user: userId }).populate(
+    "user",
+    "name email role"
+  );
+
+  const itemIds = results.flatMap((order) => order.items);
+
+  const items = await PaintService.find({ _id: { $in: itemIds } });
+  console.log({ items: results[0]?.items });
+
+  const finalResult = results.map((order) => ({
+    result: order,
+    items: items.filter((item) => order.items.includes(item._id)),
+  }));
+  console.log({ finalResult });
+
+  return finalResult;
 };
 
 const changStatus = async (orderId: string, status: string) => {

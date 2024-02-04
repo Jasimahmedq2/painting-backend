@@ -7,14 +7,12 @@ const PaintCategoryModel = new Schema<IPaintCategory>({
     required: true,
     unique: true,
   },
-  paints: {
-    type: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "paintService",
-      },
-    ],
-  },
+  paints: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "paintService",
+    },
+  ],
   image: {
     type: String,
     required: true,
